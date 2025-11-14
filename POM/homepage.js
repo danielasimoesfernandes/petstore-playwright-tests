@@ -4,6 +4,12 @@ export class Homepage {
     constructor(page) {
         this.page = page;
         this.url = 'https://petstore.octoperf.com/actions/Catalog.action';
+        this.signInButton = this.page.getByRole('link', { name: 'Sign In' });
+        this.loginMessage = this.page.locator('text=Please enter your username and password.');
+        this.searchBox = this.page.locator('input[name="keyword"]');
+        this.homepageLogoButton = this.page.locator('#LogoContent').getByRole('link');
+        this.searchButton = this.page.getByRole('button', { name: 'Search' });
+        this.searchResults = this.page.locator('text=' + petName);
     }
     // Navigate to the homepage
     async gotopage() {
@@ -12,29 +18,29 @@ export class Homepage {
 
     // Click on the Sign In button
     async clickSignIn() {
-        const signInButton = this.page.getByRole('link', { name: 'Sign In' })
-        await signInButton.click();
-        // Verify that the Sign In page is displayed
-        const loginMessage = this.page.locator('text=Please enter your username and password.');
-        await expect(loginMessage).toBeVisible();
+        await this.signInButton.click();
+    }
+
+    // Verify that the Sign In page is displayed
+    async verifyLoginMessage() {
+        await expect(this.loginMessage).toBeVisible();
     }
 
     // Click on the homepage logo to return to homepage
     async clickHomepageLogo() {
-        const homepageLogoButton = this.page.locator('#LogoContent').getByRole('link');
-        await homepageLogoButton.click();
+        await this.homepageLogoButton.click();
     }
 
     // Search for a pet 
     async searchPet(petName) {
-        const searchBox = this.page.locator('input[name="keyword"]');
-        await searchBox.fill(petName);
-        const searchButton = this.page.getByRole('button', { name: 'Search' });
-        await searchButton.click();
-        // Verify that the search results are displayed
-        const searchResults = this.page.locator('text=' + petName);
-        await expect(searchResults).toBeVisible();
+        await this.searchBox.fill(petName);
+        await this.searchButton.click();
     }
+
+     // Verify that the search results are displayed
+        async verifySearchResults() {
+            await expect(this.searchResults).toBeVisible();
+        }
 
     // Select a category from the side bar 
     async clickCategorySidebar(category) {

@@ -9,10 +9,15 @@ test('Navigate to URL and check homepage buttons', async ({ page }) => {
     await homepage.gotopage();
     // Naviagate to Sign In page
     await homepage.clickSignIn();
+    // Verify that the Sign In page is displayed
+    await homepage.verifyLoginMessage();
     // Navigate to homepage
     await homepage.clickHomepageLogo();
     // Search for a pet
-    await homepage.searchPet('Persian');    
+    await homepage.searchPet('Persian');   
+    // Verify that the search results are displayed
+    await homepage.verifySearchResults();
+    // Navigate to homepage 
     await homepage.clickHomepageLogo();
     // Select a category from the sidebar 
     await homepage.clickCategorySidebar('BIRDS');
