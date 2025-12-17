@@ -21,4 +21,4 @@ test ('Navigate to Registration page from Homepage', async ({ page }) => {
     await register.fillProfileInformationFields();
     // Submit the registration
     await register.submitRegistration();
-});
+});±

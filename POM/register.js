@@ -32,7 +32,7 @@ export class Register {
         await this.page.fill('input[name="account.firstName"]', 'Amélia');
         await this.page.fill('input[name="account.lastName"]', 'Soares');
         await this.page.fill('input[name="account.email"]', 'amelia.soares@gmail.com');
-        await this.page.fill('input[name="account.phone"]', '912345678');
+        await this.page.fill('input[name="account.	phone"]', '912345678');
         await this.page.fill('input[name="account.address1"]', '123 Main St');
         await this.page.fill('input[name="account.address2"]', 'Apt 4');
         await this.page.fill('input[name="account.city"]', 'Dublin');
